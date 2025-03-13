@@ -1,0 +1,20 @@
+.image-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    margin: 0 auto;
+}
+.image-container {
+    text-align: center;
+    width: 48%;
+}
+.custom-image {
+    width: auto;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+.image-container p {
+    margin-top: 8px;
+}
