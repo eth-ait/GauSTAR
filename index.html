@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>GSTAR</title>
+    <title>GauSTAR</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,11 +31,11 @@
         <div class="row">
             <h1 class="col-md-12 text-center">
 				</br>
-                <b>GSTAR:</b> Gaussian Surface Tracking and Reconstruction
+                <b>GauSTAR:</b> Gaussian Surface Tracking and Reconstruction
 				</br>
                 <small>
 				</br>
-				Accepted by CVPR 2025
+				CVPR 2025
                 </small>
             </h1>
         </div>
@@ -81,13 +81,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="./GSTAR_arXiv_supp.pdf">
+                        <a href="./GauSTAR_arXiv_supp.pdf">
                         <image src="img/database_icon.png" height="60px">
                             <h4><strong>Supp</strong></h4>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.youtube.com/watch?v=Fwby4PrjFeM">
+                        <a href="https://www.youtube.com/watch?v=NQALobcY6vk">
                         <image src="img/youtube_icon.png" height="60px">
                             <h4><strong>Video</strong></h4>
                         </a>
@@ -127,7 +127,7 @@
             <div class="col-md-10 col-md-offset-1">
                 <image src="img/teaser.png" class="img-responsive" alt="teaser"><br>
                 <p class="text-justify">
-					We propose GSTAR, a novel method that (a) enables photo-realistic rendering, surface reconstruction, and 3D tracking for dynamic scenes while handling topology changes. (b) GSTAR adapts to topology changes through two mechanisms: consistent tracking for stable surfaces (red circles) and dynamic surface generation for newly appearing geometry (orange circles).
+					We propose GauSTAR, a novel method that (a) enables photo-realistic rendering, surface reconstruction, and 3D tracking for dynamic scenes while handling topology changes. (b) GauSTAR adapts to topology changes through two mechanisms: consistent tracking for stable surfaces (red circles) and dynamic surface generation for newly appearing geometry (orange circles).
                 </p>
             </div>
         </div>
@@ -138,7 +138,7 @@
                     Abstract
                 </h2>
                 <p class="text-justify">
-                    3D Gaussian Splatting techniques have enabled efficient photo-realistic rendering of static scenes. Recent works have extended these approaches to support surface reconstruction and tracking. However, tracking dynamic surfaces with 3D Gaussians remains challenging due to complex topology changes, such as surfaces appearing, disappearing, or splitting. To address these challenges, we propose GSTAR, a novel method that achieves photo-realistic rendering, accurate surface reconstruction, and reliable 3D tracking for general dynamic scenes with changing topology. Given multi-view captures as input, GSTAR binds Gaussians to mesh faces to represent dynamic objects. For surfaces with consistent topology, GSTAR maintains the mesh topology and tracks the meshes using Gaussians. In regions where topology changes, GSTAR adaptively unbinds Gaussians from the mesh, enabling accurate registration and the generation of new surfaces based on these optimized Gaussians. Additionally, we introduce a surface-based scene flow method that provides robust initialization for tracking between frames. Experiments demonstrate that our method effectively tracks and reconstructs dynamic surfaces, enabling a range of applications. We will release our implementation to facilitate future research. 
+                    3D Gaussian Splatting techniques have enabled efficient photo-realistic rendering of static scenes. Recent works have extended these approaches to support surface reconstruction and tracking. However, tracking dynamic surfaces with 3D Gaussians remains challenging due to complex topology changes, such as surfaces appearing, disappearing, or splitting. To address these challenges, we propose GauSTAR, a novel method that achieves photo-realistic rendering, accurate surface reconstruction, and reliable 3D tracking for general dynamic scenes with changing topology. Given multi-view captures as input, GauSTAR binds Gaussians to mesh faces to represent dynamic objects. For surfaces with consistent topology, GauSTAR maintains the mesh topology and tracks the meshes using Gaussians. In regions where topology changes, GauSTAR adaptively unbinds Gaussians from the mesh, enabling accurate registration and the generation of new surfaces based on these optimized Gaussians. Additionally, we introduce a surface-based scene flow method that provides robust initialization for tracking between frames. Experiments demonstrate that our method effectively tracks and reconstructs dynamic surfaces, enabling a range of applications. We will release our implementation to facilitate future research. 
                 </p>
             </div>
         </div>
@@ -151,7 +151,7 @@
                 </h2>
                 <div class="text-center">
                     <div style="position:relative;padding-top:56.25%;">
-                        <iframe src="https://www.youtube.com/embed/Fwby4PrjFeM" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                        <iframe src="https://www.youtube.com/embed/NQALobcY6vk" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
                     </div>
                 </div>
             </div>
@@ -165,18 +165,18 @@
                 </h2>
 				<image src="img/pipeline.png" class="img-responsive" alt="pipeline"><br>
 				<p class="text-justify">
-                    Taking multi-view captures as input, GSTAR tracks and reconstructs dynamic objects frame by frame. For each frame, GSTAR first warps the previous frame's result using scene flow. It then reconstructs Gaussian Surfaces (Gaussian-attached mesh) by fixed-topology reconstruction. To handle topology-changing surfaces, GSTAR detects topology changes, unbinds Gaussians on these surfaces, and adds new Gaussians as needed . Finally, the Gaussian Surfaces are updated through re-meshing.
+                    Taking multi-view captures as input, GauSTAR tracks and reconstructs dynamic objects frame by frame. For each frame, GauSTAR first warps the previous frame's result using scene flow. It then reconstructs Gaussian Surfaces (Gaussian-attached mesh) by fixed-topology reconstruction. To handle topology-changing surfaces, GauSTAR detects topology changes, unbinds Gaussians on these surfaces, and adds new Gaussians as needed . Finally, the Gaussian Surfaces are updated through re-meshing.
                 </p>
 				</br>
 				</br>
 				<div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin: 0 auto;">
 					<div style="text-align: center; width: 25%;">
 						<img src="img/unbind_weight.png" alt="unbind_weight" class="img-responsive" style="width: auto; height: 160px; margin: 0 auto;">
-						<p>GSTAR detects topology changes based on positional gradients and reconstruction errors</p>
+						<p>GauSTAR detects topology changes based on positional gradients and reconstruction errors</p>
 					</div>
 					<div style="text-align: center; width: 40%;">
 						<img src="img/mesh_connection.png" alt="mesh_connection" class="img-responsive" style="width: auto; height: 160px; margin: 0 auto;">
-						<p style="width: 85%; margin: 0 auto;">GSTAR generates new faces for new geometry and connects them to the original faces</p>
+						<p style="width: 85%; margin: 0 auto;">GauSTAR generates new faces for new geometry and connects them to the original faces</p>
 					</div>
 					<div style="text-align: center; width: 35%;">
 						<img src="img/mesh_gif.gif" alt="Right Image" class="img-responsive" style="width: auto; height: 160px; margin: 0 auto;">
@@ -194,8 +194,8 @@
                     Citation
                 </h2>
                 <textarea id="bibtex" class="form-control" style="height:200px" readonly>
-@misc{zheng2025gstar,
-      title={GSTAR: Gaussian Surface Tracking and Reconstruction}, 
+@misc{zheng2025gaustar,
+      title={GauSTAR: Gaussian Surface Tracking and Reconstruction}, 
       author={Chengwei Zheng and Lixin Xue and Juan Zarate and Jie Song},
       year={2025},
       eprint={2501.10283},
