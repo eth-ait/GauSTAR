@@ -25,14 +25,12 @@
 <p align="center">
   <img src="teaser.jpg" alt="teaser" width=80%>
   <br>
-    <em>GauSTAR enables photo-realistic rendering, surface reconstruction, and 3D tracking for dynamic scenes while handling topology changes from multiview inputs.</em>
+    <em>GauSTAR enables photo-realistic rendering, surface reconstruction, and 3D tracking for dynamic scenes from multiview inputs while handling topology changes.</em>
 </p>
 
 ---
 
-## Overview and contents
-
-This repository provides the implementation of **GauSTAR**. Due to license restrictions, we cannot provide the sequences shown in the paper. 
+This repository provides the offcial implementation of **GauSTAR**. Due to license restrictions, we cannot provide the sequences shown in the paper. 
 Instead, we provide the implementation on the public available [ActorsHQ](https://actors-hq.com/) dataset.
 
 GauSTAR requires multiview RGB and depth inputs.
@@ -112,7 +110,9 @@ python humanrf/run.py \
 
 Note that the access file `actorshq_access_4x.yaml` needs to be requested from the [official ActorsHQ website](https://actors-hq.com/#dataset).
 
-After training, the checkpoint will be saved at `/<your_humanrf_output_path>/humanrf_example_output/checkpoints/best.pth`. 
+After training, the checkpoint will be saved at 
+`/<your_humanrf_output_path>/humanrf_example_output/checkpoints/best.pth`. 
+
 We also provide a pre-trained checkpoint [here](https://drive.google.com/file/d/1FTjVFDyo2gE_RZPPTSnl223kL7WLEmUz/view?usp=sharing) (only for Actor01 Sequence1, frame 40 to 80).
 
 You can customize training parameters (such as selecting the sequence, adjusting the frame range, and setting the number of training steps) by editing the configuration file in the command above (e.g., `data_process/humanrf/humanrf/configs/example_humanrf_GauSTAR.py`).
