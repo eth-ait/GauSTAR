@@ -30,27 +30,40 @@
 
 ---
 
+## Overview and contents
+
 This repository provides the offcial implementation of **GauSTAR**. Due to license restrictions, we cannot provide the sequences shown in the paper. 
 Instead, we provide the implementation on the public available [ActorsHQ](https://actors-hq.com/) dataset.
 
 GauSTAR requires multiview RGB and depth inputs.
 Since ActorsHQ does not provide depth images, we use [HumanRF](https://github.com/synthesiaresearch/humanrf) to first reconstruct 3D meshes and then render depth images as input to GauSTAR.
 
-<!--
 ### Table of Contents
-- [Data processing on ActorsHQ dataset](#data-processing-on-actorshq-dataset)
-  - [HumanRF training](#humanrf-training)
-  - [HumanRF mesh extraction](#humanrf-mesh-extraction)
-  - [Depth generation and data conversion](#depth-generation-and-data-conversion)
-  - [Optical flow prediction](#optical-flow-prediction)
-  - [Data structure](#data-structure)
-- [GauSTAR training](#gaustar-training)
-  - [Environment setup](#environment-setup)
-  - [Training](#training)
-  - [Output format](#output-format)
-  - [Other Tools](#other-tools)
-- [Troubleshooting](#troubleshooting)
--->
+
+<details>
+<summary><a href="#data-processing-on-actorshq-dataset"><strong>Data processing on ActorsHQ dataset</strong></a></summary>
+
+- [HumanRF training](#humanrf-training)  
+- [HumanRF mesh extraction](#humanrf-mesh-extraction)  
+- [Depth generation and data conversion](#depth-generation-and-data-conversion)  
+- [Optical flow prediction](#optical-flow-prediction)  
+- [Data structure](#data-structure)  
+
+</details>
+
+<details>
+<summary><a href="#gaustar-training"><strong>GauSTAR training</strong></a></summary>
+
+- [Environment setup](#environment-setup)  
+- [Training](#training)  
+- [Output format](#output-format)  
+- [Other Tools](#other-tools)  
+
+</details>
+
+<details>
+<summary><a href="#faq"><strong>FAQ</strong></a></summary>
+</details>
 
 ---
 
@@ -320,7 +333,7 @@ To change the background color, modify the `render_results` in `render_seq.py` (
 
 ---
 
-## FAQ 
+## FAQ
 
 Common issues are listed here. If you encounter problems, feel free to open an issue.
 
