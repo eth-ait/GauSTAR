@@ -24,16 +24,21 @@
 
 <p align="center">
   <img src="teaser.jpg" alt="teaser" width=80%>
+  <br>
+    <em>GauSTAR enables photo-realistic rendering, surface reconstruction, and 3D tracking for dynamic scenes while handling topology changes from multiview inputs.</em>
 </p>
 
 ---
 
 ## Overview and contents
 
-This repository provides the implementation of **GauSTAR** on the [ActorsHQ](https://actors-hq.com/) dataset.
+This repository provides the implementation of **GauSTAR**. Due to license restrictions, we cannot provide the sequences shown in the paper. 
+Instead, we provide the implementation on the public available [ActorsHQ](https://actors-hq.com/) dataset.
 
-GauSTAR data capture system provides depth inputs, while ActorsHQ does not. Thus, we use [HumanRF](https://github.com/synthesiaresearch/humanrf) to generate 3D meshes and render depth images from them.
+GauSTAR requires multiview RGB and depth inputs.
+Since ActorsHQ does not provide depth images, we use [HumanRF](https://github.com/synthesiaresearch/humanrf) to first reconstruct 3D meshes and then render depth images as input to GauSTAR.
 
+<!--
 ### Table of Contents
 - [Data processing on ActorsHQ dataset](#data-processing-on-actorshq-dataset)
   - [HumanRF training](#humanrf-training)
@@ -47,18 +52,20 @@ GauSTAR data capture system provides depth inputs, while ActorsHQ does not. Thus
   - [Output format](#output-format)
   - [Other Tools](#other-tools)
 - [Troubleshooting](#troubleshooting)
+-->
 
 ---
 
 ## Data processing on ActorsHQ dataset
 
-We modify the original HumanRF framework to generate 3D meshes and render depth images for the ActorHQ dataset. The resulting depth maps are used as input to GauSTAR.
+We adapt the original HumanRF framework to generate 3D meshes and render depth images for the ActorHQ dataset. 
 
-The following instructions use Actor01 Sequence1 from frame 40 to 80 as an example. Please modify the corresponding parameters if you are using a different sequence or frame range.
+The following instructions use Actor01 Sequence1 from frame 40 to 80 as an example. 
+Please modify the parameters accordingly if you are using a different sequence or frame range.
 
 ### HumanRF training
 
-First, install the HumanRF environment. Detailed instructions can be found in the [HumanRF README](data_process/humanrf/README.md#installation).
+Install the HumanRF environment. Detailed instructions can be found in the [HumanRF README](data_process/humanrf/README.md#installation).
 
 ```bash
 cd data_process/humanrf/
@@ -86,7 +93,7 @@ pip install aitviewer
 export PYTHONPATH=$PYTHONPATH:/path/to/repo
 ```
 
-Next, download the ActorsHQ dataset and run HumanRF training using:
+Download the ActorsHQ dataset and run HumanRF training.
 ```bash
 python actorshq/dataset/download_manager.py \
     actorshq_access_4x.yaml \
@@ -105,13 +112,14 @@ python humanrf/run.py \
 
 Note that the access file `actorshq_access_4x.yaml` needs to be requested from the [official ActorsHQ website](https://actors-hq.com/#dataset).
 
-After training, the checkpoint will be saved at `/<your_humanrf_output_path>/humanrf_example_output/checkpoints/best.pth`. We also provide a pre-trained checkpoint [here](https://drive.google.com/file/d/1FTjVFDyo2gE_RZPPTSnl223kL7WLEmUz/view?usp=sharing) (only for Actor01 Sequence1, frame 40 to 80).
+After training, the checkpoint will be saved at `/<your_humanrf_output_path>/humanrf_example_output/checkpoints/best.pth`. 
+We also provide a pre-trained checkpoint [here](https://drive.google.com/file/d/1FTjVFDyo2gE_RZPPTSnl223kL7WLEmUz/view?usp=sharing) (only for Actor01 Sequence1, frame 40 to 80).
 
 You can customize training parameters (such as selecting the sequence, adjusting the frame range, and setting the number of training steps) by editing the configuration file in the command above (e.g., `data_process/humanrf/humanrf/configs/example_humanrf_GauSTAR.py`).
 
 ### HumanRF mesh extraction
 
-Once training is complete, you can extract meshes using the same Python command-line arguments from training:
+Once training is complete, run the mesh extraction script with the same command-line arguments as in training:
 
 ```bash
 python humanrf/run_mesh_extract_GauSTAR.py \
@@ -124,7 +132,7 @@ The extracted meshes will be saved to: `/<your_humanrf_output_path>/humanrf_exam
 
 ### Depth generation and data conversion
 
-Use the following script to generate the GauSTAR dataset
+Use the following script to convert the ActorsHQ dataset to the GauSTAR format.
 
 ```bash
 cd ..
@@ -138,7 +146,8 @@ python ahq2gaustar.py \
 
 ### Optical flow prediction
 
-We use [RAFT](https://github.com/princeton-vl/RAFT) to predict optical flow. The main function is modified to compute bidirectional flow, allowing us to filter out inconsistent estimations.
+We use [RAFT](https://github.com/princeton-vl/RAFT) to predict optical flow. 
+The main function is modified to compute bidirectional flow, allowing us to filter out inconsistent estimations.
 
 First, set up the RAFT environment:
 ```Shell
@@ -164,7 +173,7 @@ python demo_GauSTAR.py \
 
 ### Data structure
 
-After data preprocessing, your `gaustar_data_example` folder should look like:
+After data preprocessing, your `gaustar_data_example` folder should have the following structure:
 
 ```
 └── gaustar_data_example
@@ -204,8 +213,10 @@ After data preprocessing, your `gaustar_data_example` folder should look like:
 
 ### Environment setup
 
+<!--
 You can set up the GauSTAR environment using the following commands, which primarily use `pip install`. Alternatively, if you prefer to use `conda install`, please refer to the instructions in the *Installation* section from [SuGaR README](https://github.com/Anttwo/SuGaR/tree/main?tab=readme-ov-file#installation), as our implementation is built on top of [SuGaR](https://github.com/Anttwo/SuGaR/tree/main).
-
+-->
+You can set up the GauSTAR environment using the following commands.
 ```Shell
 # Install pytorch and pytorch3d, you may need to adjust the CUDA version (here we use CUDA 11.8)
 conda create -n gaustar python=3.9
@@ -226,7 +237,7 @@ cd ../../../
 
 ### Training
 
-First, convert the camera parameters to the Gaussian Splatting format. This step only needs to be performed once:
+First, convert camera parameters to the Gaussian Splatting format. This step only needs to be performed once per dataset.
 
 ```Shell
 python gaussian_splatting/train.py \
@@ -249,7 +260,8 @@ python train_seq.py \
 
 ### Output format
 
-The following is an example output of GauSTAR. Files and folders marked with * only appear when topology changes are detected and unbinding with re-meshing is performed.
+The following is an example output structure of GauSTAR. 
+Files and folders marked with * only appear when topology changes are detected and the unbinding with re-meshing step is performed.
 
 ```
 └── gaustar_output
@@ -287,11 +299,12 @@ The following is an example output of GauSTAR. Files and folders marked with * o
     ...
 ```
 
-### Other Tools
+### Utilities 
 
 #### Image rendering
 
-Images are automatically rendered upon training completion. If you need to re-render them (e.g., to change the background color), you can run `render_seq.py` using the same command-line arguments as in training:
+Images are automatically rendered upon training completion. 
+If you need to re-render them (e.g., to change the background color), you can run `render_seq.py` with the same command-line arguments as in training:
 
 ```Shell
 python render_seq.py \
@@ -307,15 +320,29 @@ To change the background color, modify the `render_results` in `render_seq.py` (
 
 ---
 
-## Troubleshooting
+## FAQ 
 
-We list common issues here. 
-
-If you encounter problems, feel free to open an issue on `GitHub Issues`.
+Common issues are listed here. If you encounter problems, feel free to open an issue.
 
 - **Initial mesh**: `init_mesh_100k.obj` is generated by HumanRF (from `humanrf_example_output/results/mesh/mesh_000040_smooth_100k.obj`). However, it may sometimes contain inner surfaces, which should be removed before running GauSTAR. We provide an outlier removal method in the `extract_geometry_1frame()` function located in `data_process/humanrf/humanrf/trainer.py`, with a default `outlier_threshold=0.2`. If you observe inner surfaces in `init_mesh_100k.obj` (you can check this using Meshlab via *Render -> Shaders -> xray*), try increasing the `outlier_threshold` and re-running `humanrf/run_mesh_extract_GauSTAR.py` to filter them out.
 
 - **Camera parameters**: GauSTAR assumes camera intrinsics with *cx = image_width / 2* and *cy = image_height / 2*, which differs from the intrinsic parameters in ActorsHQ. To address this, we apply an image shift in `ahq2gaustar.py`. Currently, camera parameters are stored in both `gaustar_data_example/gs_out/cameras.json` and `gaustar_data_example/rgb_cameras.npz`, as `cameras.json` does not include the *cx* and *cy* values in the intrinsics. If you need to modify the camera parameters, please make sure to update both files accordingly. 
 
+## Acknowledgments
 
+We thank the authors of [HumanRF](https://github.com/synthesiaresearch/humanrf), [SuGaR](https://github.com/Anttwo/SuGaR), and [RAFT](https://github.com/princeton-vl/RAFT) for their excellent work and for making their code publicly available.
 
+## Citation
+
+If you find this work useful, please consider citing:
+
+```bibtex
+@InProceedings{Zheng_2025_CVPR,
+    author    = {Zheng, Chengwei and Xue, Lixin and Zarate, Juan and Song, Jie},
+    title     = {GauSTAR: Gaussian Surface Tracking and Reconstruction},
+    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
+    month     = {June},
+    year      = {2025},
+    pages     = {16543-16553}
+}
+```
