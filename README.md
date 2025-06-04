@@ -337,7 +337,7 @@ We thank the authors of [HumanRF](https://github.com/synthesiaresearch/humanrf),
 If you find this work useful, please consider citing:
 
 ```bibtex
-@InProceedings{Zheng_2025_CVPR,
+@InProceedings{zheng2025gaustar,
     author    = {Zheng, Chengwei and Xue, Lixin and Zarate, Juan and Song, Jie},
     title     = {GauSTAR: Gaussian Surface Tracking and Reconstruction},
     booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
