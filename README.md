@@ -1,13 +1,51 @@
 
-# Official Repository of GauSTAR
+[//]: # (# Official Repository of GauSTAR)
 
-**GauSTAR: Gaussian Surface Tracking and Reconstruction**
+<h2 align="center">
+<b>GauSTAR:</b> Gaussian Surface Tracking and Reconstruction
+</h2>
 
-Chengwei Zheng, Lixin Xue, Juan Zarate, Jie Song
+<div style="text-align: center;">
+  <ul style="list-style: none; padding: 0; margin: 0;">
+    <li style="display: inline; margin: 0 10px;">
+      <a href="https://chengwei-zheng.github.io/">Chengwei Zheng</a><sup>1</sup>
+    </li>
+    <li style="display: inline; margin: 0 10px;">
+      <a href="https://lxxue.github.io/">Lixin Xue</a><sup>1</sup>
+    </li>
+    <li style="display: inline; margin: 0 10px;">
+      <a href="https://ait.ethz.ch/people/jzarate">Juan Zarate</a><sup>1</sup>
+    </li>
+    <li style="display: inline; margin: 0 10px;">
+      <a href="https://ait.ethz.ch/people/song">Jie Song</a><sup>1,2,3</sup>
+    </li>
+  </ul>
+</div>
 
-CVPR 2025
+<div style="text-align: center;">
+  <ul style="list-style: none; padding: 0; margin: 0;">
+    <li style="display: inline; margin: 0 10px;">
+      <sup>1</sup>ETH Zürich
+    </li>
+    <li style="display: inline; margin: 0 10px;">
+      <sup>2</sup>HKUST(GZ)
+    </li>
+    <li style="display: inline; margin: 0 10px;">
+      <sup>3</sup>HKUST
+    </li>
+  </ul>
+</div>
 
-https://eth-ait.github.io/GauSTAR/
+<h3 align="center" style="margin-top:-10px;">
+  <p>CVPR 2025</p>
+  <a href="http://arxiv.org/abs/2501.10283">Paper</a>
+  | <a href="https://www.youtube.com/watch?v=NQALobcY6vk">Video</a>
+  | <a href="https://eth-ait.github.io/GauSTAR/">Project Page</a>
+</h3>
+
+<p align="center">
+  <img src="teaser.jpg" alt="teaser" width=80%>
+</p>
 
 ---
 
