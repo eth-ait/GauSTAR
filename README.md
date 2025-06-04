@@ -57,7 +57,7 @@ Since ActorsHQ does not provide depth images, we use [HumanRF](https://github.co
 - [Environment setup](#environment-setup)  
 - [Training](#training)  
 - [Output format](#output-format)  
-- [Other Tools](#other-tools)  
+- [Utilities](#utilities)  
 
 </details>
 
@@ -312,7 +312,7 @@ Files and folders marked with * only appear when topology changes are detected a
     ...
 ```
 
-### Utilities 
+### Utilities
 
 #### Image rendering
 
