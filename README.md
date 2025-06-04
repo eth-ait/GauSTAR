@@ -5,36 +5,15 @@
 <b>GauSTAR:</b> Gaussian Surface Tracking and Reconstruction
 </h2>
 
-<div style="text-align: center;">
-  <ul style="list-style: none; padding: 0; margin: 0;">
-    <li style="display: inline; margin: 0 10px;">
-      <a href="https://chengwei-zheng.github.io/">Chengwei Zheng</a><sup>1</sup>
-    </li>
-    <li style="display: inline; margin: 0 10px;">
-      <a href="https://lxxue.github.io/">Lixin Xue</a><sup>1</sup>
-    </li>
-    <li style="display: inline; margin: 0 10px;">
-      <a href="https://ait.ethz.ch/people/jzarate">Juan Zarate</a><sup>1</sup>
-    </li>
-    <li style="display: inline; margin: 0 10px;">
-      <a href="https://ait.ethz.ch/people/song">Jie Song</a><sup>1,2,3</sup>
-    </li>
-  </ul>
-</div>
-
-<div style="text-align: center;">
-  <ul style="list-style: none; padding: 0; margin: 0;">
-    <li style="display: inline; margin: 0 10px;">
-      <sup>1</sup>ETH Zürich
-    </li>
-    <li style="display: inline; margin: 0 10px;">
-      <sup>2</sup>HKUST(GZ)
-    </li>
-    <li style="display: inline; margin: 0 10px;">
-      <sup>3</sup>HKUST
-    </li>
-  </ul>
-</div>
+<p align="center" style="margin:0">
+    <a href="https://chengwei-zheng.github.io/">Chengwei Zheng</a>
+    ·
+    <a href="https://lxxue.github.io/">Lixin Xue</a>
+    ·
+    <a href="https://ait.ethz.ch/people/jzarate">Juan Zarate</a>
+    ·
+    <a href="https://ait.ethz.ch/people/song">Jie Song</a>
+</p>
 
 <h3 align="center" style="margin-top:-10px;">
   <p>CVPR 2025</p>
