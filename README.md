@@ -271,6 +271,8 @@ python train_seq.py \
     --from_humanrf
 ```
 
+Optional arguments: Use `--disable_mesh_update` to turn off mesh topology updates; use `--SH_reg` to add a color (appearance spherical harmonics) consistency term, which helps improve tracking accuracy.
+
 ### Output format
 
 The following is an example output structure of GauSTAR. 
