@@ -33,6 +33,7 @@ class opti_config:
     loose_bind_factor_r = 1
     use_margin = True  # For ActorHQ dataset, as cx cy != shape / 2
     print_training_info = True
+    max_depth = 10
 
 
 def refined_training(args):
@@ -106,7 +107,9 @@ def refined_training(args):
     loss_function = 'l1+dssim'  # 'l1' or 'l2' or 'l1+dssim'
     if loss_function == 'l1+dssim':
         dssim_factor = 0.2
-        
+
+    max_depth = cfg.max_depth
+
     use_surface_losses = True
     learn_surface_mesh_positions = True
     learn_surface_mesh_opacity = True
@@ -600,7 +603,7 @@ def refined_training(args):
                     point_depth = fov_camera.get_world_to_view_transform().transform_points(sugar.points)[..., 2:]
                     if not depth_alpha:
                         point_depth = point_depth.expand(-1, 3)
-                        max_depth = 10  # point_depth.max() * 2
+                        # max_depth = 10  # point_depth.max() * 2
                         pred_depth = sugar.render_image_gaussian_rasterizer(
                             camera_indices=cmr_i,
                             bg_color=max_depth + torch.zeros(3, dtype=torch.float, device=sugar.device),
@@ -630,7 +633,7 @@ def refined_training(args):
 
                     gt_depth = nerfmodel.get_gt_depth(camera_indices=cmr_i)[..., 0]
                     if iteration > cfg.depth_loss_from:
-                        fg_mask = (gt_depth < 10)
+                        fg_mask = (gt_depth < max_depth)
                         fg_pred_depth = pred_depth[fg_mask]
                         fg_gt_depth = gt_depth[fg_mask]
                         # if iteration > 5000:
@@ -643,7 +646,7 @@ def refined_training(args):
                     if iteration > cfg.mask_loss_from:
                         # gt_mask = nerfmodel.get_gt_mask(camera_indices=cmr_i)[..., 0]
                         # bg_mask = (gt_mask < 0.1)
-                        bg_mask = (gt_depth > 10)
+                        bg_mask = (gt_depth > max_depth)
                         if not depth_alpha:
                             bg_pred_depth = pred_depth[bg_mask]
                             mask_loss = cfg.mask_loss_factor * (bg_pred_depth - max_depth).abs().mean()  # L1
