@@ -69,7 +69,7 @@ Since ActorsHQ does not provide depth images, we use [HumanRF](https://github.co
 
 ## Data processing on ActorsHQ dataset
 
-We adapt the original HumanRF framework to generate 3D meshes and render depth images for the ActorHQ dataset. 
+We adapt the original HumanRF framework to generate 3D meshes and render depth images for the ActorsHQ dataset. 
 
 The following instructions use Actor01 Sequence1 from frame 40 to 80 as an example. 
 Please modify the parameters accordingly if you are using a different sequence or frame range.
