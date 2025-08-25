@@ -59,9 +59,10 @@ def img_translate(img, intr_mat, border_value=None):
     return img_trans
 
 
-def rgb_convert(ahq_dir, gstar_dir, frame_0, frame_end, interval=1):
+def rgb_convert(ahq_dir, gstar_dir, frame_0, frame_end, interval=1, undistort=False):
     camera_infos = dict(np.load(gstar_dir / "rgb_cameras.npz"))
     intr = camera_infos["intrinsics"]
+    dist_coeff = camera_infos["dist_coeffs"]
     cmr_num = intr.shape[0]
 
     for f_idx in tqdm(range(frame_0, frame_end, interval)):
@@ -77,6 +78,8 @@ def rgb_convert(ahq_dir, gstar_dir, frame_0, frame_end, interval=1):
         for cmr_idx in range(cmr_num):
             cmr_name = f"Cam{(cmr_idx+1):03d}"
             rgb_ahq = cv2.imread(str(ahq_dir / f"rgbs/{cmr_name}/{cmr_name}_rgb{f_idx:06d}.jpg"), cv2.IMREAD_UNCHANGED)
+            if undistort:
+                rgb_ahq = cv2.undistort(rgb_ahq, intr[cmr_idx], dist_coeff[cmr_idx], None, intr[cmr_idx])
             rgb_trans = img_translate(rgb_ahq, intr[cmr_idx])
             cv2.imwrite(str(rgb_dir / f"img_{cmr_idx:04d}.jpg"), rgb_trans)
 
